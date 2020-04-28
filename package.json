@@ -1,11 +1,10 @@
 {
   "name": "hotdogpins.com",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "hotdog pin ecommerce site",
   "private": true,
   "scripts": {
-    "start": "node app.js",
-    "test": "make test"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "1.19.0",
@@ -21,20 +20,6 @@
     "stripe": "8.47.0"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0",
-    "@babel/preset-env": "7.0.0",
-    "babelify": "github:ylemkimon/babelify",
-    "browserify": "16.2.2",
     "expect.js": "0.3.1",
-    "gulp": "^4.0.0",
-    "gulp-clean-css": "3.10.0",
-    "gulp-concat": "2.6.1",
-    "gulp-less": "4.0.1",
-    "gulp-streamify": "1.0.2",
-    "gulp-uglify": "3.0.1",
-    "less": "3.8.1",
-    "merge-stream": "1.0.1",
-    "vinyl-buffer": "1.0.1",
-    "vinyl-source-stream": "2.0.0"
   }
 }

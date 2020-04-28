@@ -10,7 +10,7 @@ module.exports = function(app){
   app.get('/hotdog', (req, res)=>{
     let stripeSecret = hotdog.getStripeSecret();
     if(!stripeSecret){
-      return res.send('please create an environment.json file with your Stripe credentials')
+      return res.send('please create an environment.json file with your Stripe credentials.  see README for details')
     }
 
     stripeSecret = JSON.parse(stripeSecret).secret;
