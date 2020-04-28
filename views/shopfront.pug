@@ -1,0 +1,113 @@
+doctype html
+html(
+  lang='en'
+)
+
+  head
+    block head
+      meta(
+        charset='utf-8'
+      )
+      
+      meta(
+        name='viewport'
+        content='width=device-width, initial-scale=1, shrink-to-fit=no'
+      )
+
+      link(
+        rel='stylesheet'
+        href='/css/bootstrap.min.css'
+      )
+
+      title Awesome hotdog pins for sale - Cheap, stylish hotdog pins
+
+      script(
+        src='https://js.stripe.com/v3/'
+      )
+
+      script.
+        var stripe = Stripe('pk_TqvZI94QM9xXLwhXTi4ienOsI8t5f')
+        var elements = stripe.elements()
+
+  body
+    block body
+
+      block header
+        .container
+          nav.navbar.navbar-expand-lg.navbar-light.bg-light
+            a.navbar-brand(
+              href='#'
+            )
+              | Hotdog pins sale
+
+      block messages
+        .customer-message
+
+      block content
+        .container.mt-5
+          .row
+            .offset-3.col-6
+              .card
+                img.card-img-top(
+                  src='/img/saddest-hotdog.png'
+                  alt='hotdog pin'
+                )
+                .card-body
+                  p Price: $19.99
+
+                  form#payment-form.mt-3
+                    #card-element
+                    #card-errors.mt-2(
+                      role='alert'
+                    )
+                    button#submit.mt-2 Buy an awesome hotdog pin
+
+      block footer
+
+      block bottomscripts
+
+        script.
+          const client_secret = '#{secret}'
+          const style = { base: { color: "#32325d", } }
+
+          let card = elements.create('card', {style})
+          card.mount('#card-element')
+
+          card.addEventListener('change', ({error}) => {
+            const displayError = document.getElementById('card-errors');
+            if (error) {
+              displayError.textContent = error.message;
+            } else {
+              displayError.textContent = '';
+            }
+          })
+
+          let form = document.getElementById('payment-form')
+          let submitButton = document.getElementById('submit')
+          form.addEventListener('submit', (e)=>{
+            e.preventDefault()
+              submitButton.disabled = true
+            const customerName = 'Coe Vide'
+
+            stripe.confirmCardPayment(client_secret, {
+              payment_method: {
+                card: card,
+                billing_details: {
+                  name: customerName,
+                }
+              }
+            })
+            .then((result)=>{
+              submitButton.disabled = false
+              if(result.error){
+                const displayError = document.getElementById('card-errors');
+                displayError.textContent = result.error.message
+              } else {
+                if(result.paymentIntent.status === 'succeeded'){
+                  alert('Your awesome hotdog pin is on the way!')
+                }
+              }
+            })
+          })
+
+
