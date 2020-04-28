@@ -26,7 +26,3 @@
 ## Notes
 - For simplicity, the payment form assumes the following details about the card user (name: Coe Vide)
 - Successful payments are logged to `/logs/payment_log`
-
-## Stripe Dashboard
-- Set credentials to use Test data (if using test data)
-- Set destination of webhook for payment_intent.succeeded to `/payment_success`
